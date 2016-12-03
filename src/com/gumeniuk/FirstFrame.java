@@ -3,6 +3,8 @@ package com.gumeniuk;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import com.gumeniuk.Resources.Resources;
 
@@ -12,11 +14,28 @@ public class FirstFrame extends JFrame {
     private final JTextField textField;
     private final JLabel label;
 
+    private final ActionListener actionListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch (e.getActionCommand()) {
+                case "push":
+                    changeLabelText();
+                    break;
+            }
+        }
+    };
+
+
+    private void changeLabelText() {
+        label.setText(textField.getText());
+        textField.setText("");
+    }
+
     public FirstFrame() throws HeadlessException {
         super(Resources.string("application.title"));
 
         label = new JLabel(Resources.string("label.message"), JLabel.CENTER);
-        button = new JButton(Resources.string("button.push.me"));
+        button = new JButton(Resources.string("button.push.me.text"));
         textField = new JTextField(16);
 
         initComponents();
@@ -27,6 +46,9 @@ public class FirstFrame extends JFrame {
         setLocationByPlatform(true);
 
         setContentPane(createContentPane());
+
+        button.addActionListener(actionListener);
+        button.setActionCommand(Resources.string("button.push.me.action"));
 
         add(textField, BorderLayout.NORTH);
         add(button, BorderLayout.SOUTH);
