@@ -23,7 +23,7 @@ public class Main {
 //        Locale.setDefault(ru);
         FirstFrame frame = new FirstFrame();
 
-        Dimension dimension = new Dimension(300, 400);
+        Dimension dimension = new Dimension(350, 100);
 
         frame.setMinimumSize(dimension);
 

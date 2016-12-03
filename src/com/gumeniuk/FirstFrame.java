@@ -36,12 +36,19 @@ public class FirstFrame extends JFrame {
         pack();
     }
 
+    private int getGap(JComponent component) {
+        LayoutStyle style = LayoutStyle.getInstance();
+        return style.getContainerGap(component, SwingConstants.NORTH, null);
+    }
+
     private Container createContentPane() {
-        Dimension dimension = new Dimension(300, 400);
+        Dimension dimension = new Dimension(350, 200);
 
         JPanel panel = new JPanel();
 
-        Border border = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        int vgap = getGap(panel);
+
+        Border border = BorderFactory.createEmptyBorder(vgap, vgap, vgap, vgap);
         panel.setPreferredSize(dimension);
 
         panel.setBorder(border);
